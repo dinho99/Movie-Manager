@@ -18,6 +18,7 @@ import java.io.IOException;
 import it.uniroma3.siw.controller.validator.ArtistValidator;
 import it.uniroma3.siw.model.Artist;
 import it.uniroma3.siw.repository.ArtistRepository;
+import jakarta.validation.Valid;
 
 @Controller
 public class ArtistController {
@@ -40,7 +41,7 @@ public class ArtistController {
 	}
 	
 	@PostMapping("/admin/artist")
-	public String newArtist(@ModelAttribute("artist") Artist artist, BindingResult bindingResult, Model model, @RequestParam("image") MultipartFile image) throws IOException {
+	public String newArtist(@Valid @ModelAttribute("artist") Artist artist, BindingResult bindingResult, Model model, @RequestParam("image") MultipartFile image) throws IOException {
 		this.artistValidator.validate(artist, bindingResult);
 		if (!bindingResult.hasErrors()) {
 			String fileName = StringUtils.cleanPath(image.getOriginalFilename());
