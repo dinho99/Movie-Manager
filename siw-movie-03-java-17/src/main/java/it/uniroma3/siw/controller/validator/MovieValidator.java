@@ -21,6 +21,7 @@ public class MovieValidator implements Validator {
 			errors.reject("movie.duplicate");
 		}
 	}
+	
 	@Override
 	public boolean supports(Class<?> aClass) {
 		return Movie.class.equals(aClass);

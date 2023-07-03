@@ -36,18 +36,22 @@
 		<div class="artist-form">
 			<h1>Aggiungi un artista</h1>
 			<form th:action="@{/admin/artist}" method="POST" th:object="${artist}" enctype="multipart/form-data">
-				<div>
-					<span th:text="${messaggioErrore}">Errore</span>
+				<div th:if="${#fields.hasGlobalErrors()}">
+					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
 				</div>
 				
 				<div>
 					<label for="name">Nome:</label>
 					<span><input required type="text" th:field="${artist.name}" placeholder="Nome" class="input-field"/></span>
+					<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error-message">
+					</span>
 				</div>
 
 				<div>
 					<label for="surname">Cognome:</label>
 					<span><input required type="text" th:field="${artist.surname}" placeholder="Cognome" class="input-field"/></span>
+					<span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" class="error-message">
+					</span>
 				</div>
 
 				<div>

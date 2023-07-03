@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import it.uniroma3.siw.controller.validator.ArtistValidator;
 import it.uniroma3.siw.model.Artist;
 import it.uniroma3.siw.repository.ArtistRepository;
 
@@ -22,6 +24,9 @@ public class ArtistController {
 	
 	@Autowired 
 	private ArtistRepository artistRepository;
+
+	@Autowired
+	private ArtistValidator artistValidator;
 
 	@GetMapping(value="/admin/formNewArtist")
 	public String formNewArtist(Model model) {
@@ -35,8 +40,9 @@ public class ArtistController {
 	}
 	
 	@PostMapping("/admin/artist")
-	public String newArtist(@ModelAttribute("artist") Artist artist, @RequestParam("image") MultipartFile image, Model model) throws IOException {
-		if (!artistRepository.existsByNameAndSurname(artist.getName(), artist.getSurname())) {
+	public String newArtist(@ModelAttribute("artist") Artist artist, BindingResult bindingResult, Model model, @RequestParam("image") MultipartFile image) throws IOException {
+		this.artistValidator.validate(artist, bindingResult);
+		if (!bindingResult.hasErrors()) {
 			String fileName = StringUtils.cleanPath(image.getOriginalFilename());
 			String uploadDir = "src/main/resources/static/images/";
 			String filePath = uploadDir + fileName;
@@ -49,7 +55,6 @@ public class ArtistController {
 			model.addAttribute("artist", artist);
 			return "artist.html";
 		} else {
-			model.addAttribute("messaggioErrore", "Questo artista esiste già");
 			return "admin/formNewArtist.html"; 
 		}
 	}

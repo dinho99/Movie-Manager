@@ -80,7 +80,7 @@ public class MovieController {
 	}
 
 	@PostMapping("/admin/movie")
-	public String newMovie(@Valid @ModelAttribute("movie") Movie movie, @RequestParam("image") MultipartFile image, BindingResult bindingResult, Model model) throws IOException {
+	public String newMovie(@Valid @ModelAttribute("movie") Movie movie, BindingResult bindingResult, Model model, @RequestParam("image") MultipartFile image) throws IOException {
 		this.movieValidator.validate(movie, bindingResult);
 		if (!bindingResult.hasErrors()) {
 			String fileName = StringUtils.cleanPath(image.getOriginalFilename());
