@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Artisti</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	<header>
+		<nav>
+			<ul class="navbar">
+				<li><a href="/">Home</a></li>
+			  	<li><a href="/movie">Elenco Film</a></li>
+			  	<li><a href="/artist">Elenco Artisti</a></li>
+				<li class="spacer"></li>
+			  	<li class="user-section">
+					<span th:if="${userDetails}">
+						<div class="username" th:text="${userDetails.username}"></div>
+					</span>
+					<span th:unless="${userDetails}">
+						<a href="/login" class="button">Login</a>
+					</span>
+					<span th:if="${userDetails}">
+						<a href="/logout" class="button">Logout</a>
+					</span>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
+		<h1>Artisti:</h1>
+		<div th:if="${artists==null || artists.isEmpty()}">Non ci sono artisti nel sistema</div>
+		<ul class="film-list">
+			<li th:each="artist : ${artists}">
+				<a th:href="@{'/admin/artist' + '/' + ${artist.id}}"
+					th:text="${artist.name} + ' ' + ${artist.surname}" class="button">Dino Risi</a>
+			</li>
+		</ul>
+	</main>
+</body>
+
+</html>

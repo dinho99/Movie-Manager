@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Nuovo Artisa
+	</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	<header>
+		<nav>
+			<ul class="navbar">
+				<li><a href="/">Home</a></li>
+			  	<li><a href="/movie">Elenco Film</a></li>
+			  	<li><a href="/artist">Elenco Artisti</a></li>
+				<li class="spacer"></li>
+			  	<li class="user-section">
+					<span th:if="${userDetails}">
+						<div class="username" th:text="${userDetails.username}"></div>
+					</span>
+					<span th:unless="${userDetails}">
+						<a href="/login" class="button">Login</a>
+					</span>
+					<span th:if="${userDetails}">
+						<a href="/logout" class="button">Logout</a>
+					</span>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
+		<div class="artist-form">
+			<h1>Aggiungi un artista</h1>
+			<form th:action="@{/admin/artist}" method="POST" th:object="${artist}" enctype="multipart/form-data">
+				<div>
+					<span th:text="${messaggioErrore}">Errore</span>
+				</div>
+				
+				<div>
+					<label for="name">Nome:</label>
+					<span><input required type="text" th:field="${artist.name}" placeholder="Nome" class="input-field"/></span>
+				</div>
+
+				<div>
+					<label for="surname">Cognome:</label>
+					<span><input required type="text" th:field="${artist.surname}" placeholder="Cognome" class="input-field"/></span>
+				</div>
+
+				<div>
+					<label for="urlOfPicture">Importa un'immagine del film:</label>
+					<span><input type="file" name="image" accept="image/jpg, image/jpeg" class="input-field"/></span>
+				</div>
+
+				<div>
+					<label>Data di nascita:</label>
+					<input type="date" th:field="${artist.dateOfBirth}"  class="input-field"/>
+				</div>
+
+				<div>
+					<label>Data di morte:</label>
+					<input type="date" th:field="${artist.dateOfDeath}"  class="input-field"/>
+				</div>
+				
+				<div>
+					<span><button type="submit" class="button">Conferma</button></span>
+				</div>
+			</form>
+		</div>
+	</main>
+</body>
+
+</html>
