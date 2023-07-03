@@ -31,7 +31,7 @@
 
 	<main>
 		<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
-		<h1>Lista dei film:</h1>
+		<h1>Film:</h1>
 		<div th:if="${movies==null || movies.isEmpty()}">Non ci sono film nel sistema</div>
 		<ul class="film-list">
 			<li th:each="movie : ${movies}">
