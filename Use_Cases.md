@@ -16,7 +16,7 @@
 3) Inserisci recensione:
    Un utente accede nel sistema, chiede al sistema di visualizzare la lista dei film, il sistema mostra la lista dei film all'interno del database con il titolo e (se presenti) il regista e la lista degli attori. L'utente sceglie di inserire una nuova recensione inserendo il voto, il titolo e il commento. Il sistema registra la nuova recensione.
 
-##ADMIN:
+## ADMIN:
 
 1) Ricerca film per anno:
    Un admin accede nel sistema, il sistema riconosce le credenziali dell'admin e mostra la pagina di benvenuto. L'admin chiede al sistema di mostrare le azioni sui film e seleziona la ricerca del film per anno. L'admin inserisce l'anno desiderato e il sistema mostra la lista dei film all'interno del database usciti nell'anno richiesto.
