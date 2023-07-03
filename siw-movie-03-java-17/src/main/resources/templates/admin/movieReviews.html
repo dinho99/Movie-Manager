@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Recensioni</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	<header>
+		<nav>
+			<ul class="navbar">
+				<li><a href="/">Home</a></li>
+			  	<li><a href="/movie">Elenco Film</a></li>
+			  	<li><a href="/artist">Elenco Artisti</a></li>
+				<li class="spacer"></li>
+			  	<li class="user-section">
+					<span th:if="${userDetails}">
+						<div class="username" th:text="${userDetails.username}"></div>
+					</span>
+					<span th:unless="${userDetails}">
+						<a href="/login" class="button">Login</a>
+					</span>
+					<span th:if="${userDetails}">
+						<a href="/logout" class="button">Logout</a>
+					</span>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
+		<h1>Recensioni: </h1>
+		<div th:if="${reviews==null || reviews.isEmpty()}">Non ci sono recensioni di questo film</div>
+		<ul class="review-list">
+			<li th:each="review : ${reviews}">
+				<div class="review-rating" th:text="'Voto: ' + ${review.rating} + '/5'"></div>
+				<div class="review-title" th:text="${review.title} + ': '">Up! (2000)</div>
+				<div class="review-text" th:text="' ' + ${review.text}"></div>
+				<a th:href="@{'/admin/deleteReviewFromMovie/' + ${movie.id} + '/' + ${review.id}}" class="button">elimina</a>
+			</li>
+		</ul>
+	</main>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Nuovo Film
+	</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	<header>
+		<nav>
+			<ul class="navbar">
+				<li><a href="/">Home</a></li>
+			  	<li><a href="/movie">Elenco Film</a></li>
+			  	<li><a href="/artist">Elenco Artisti</a></li>
+				<li class="spacer"></li>
+			  	<li class="user-section">
+					<span th:if="${userDetails}">
+						<div class="username" th:text="${userDetails.username}"></div>
+					</span>
+					<span th:unless="${userDetails}">
+						<a href="/login" class="button">Login</a>
+					</span>
+					<span th:if="${userDetails}">
+						<a href="/logout" class="button">Logout</a>
+					</span>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	
+	<main>
+		<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
+		<div class="newMovie-form">
+			<h1>Aggiungi un film</h1>
+			<form th:action="@{/admin/movie}" method="POST" th:object="${movie}" enctype="multipart/form-data">
+				<div th:if="${#fields.hasGlobalErrors()}">
+					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
+				</div>
+			
+				<div>
+					<label for="title">Titolo:</label>
+					<span><input type="text" th:field="${movie.title}" placeholder="Titolo" class="input-field"/></span>
+					<span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error-message">
+					</span>
+				</div>
+
+				<div>
+					<label for="year">Anno:</label>
+					<span><input type="text" th:field="${movie.year}" placeholder="Anno" class="input-field"/></span>
+					<span th:if="${#fields.hasErrors('year')}" th:errors="*{year}" class="error-message">
+					</span>
+				</div>
+
+				<div>
+					<label for="urlImage">Importa un'immagine del film:</label>
+					<span><input type="file" name="image" accept="image/jpg, image/jpeg" class="input-field"/></span>
+				</div>
+			
+				<div>
+					<span><button type="submit" class="button">Conferma</button></span>
+				</div>
+			</form>
+		</div>
+	</main>
+</body>
+
+</html>

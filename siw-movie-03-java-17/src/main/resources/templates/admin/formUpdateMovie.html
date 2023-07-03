@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Aggiorna Film
+	</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	<header>
+		<nav>
+			<ul class="navbar">
+				<li><a href="/">Home</a></li>
+			  	<li><a href="/movie">Elenco Film</a></li>
+			  	<li><a href="/artist">Elenco Artisti</a></li>
+				<li class="spacer"></li>
+			  	<li class="user-section">
+					<span th:if="${userDetails}">
+						<div class="username" th:text="${userDetails.username}"></div>
+					</span>
+					<span th:unless="${userDetails}">
+						<a href="/login" class="button">Login</a>
+					</span>
+					<span th:if="${userDetails}">
+						<a href="/logout" class="button">Logout</a>
+					</span>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<div><a href="/"><img src="/images/logo-siw.png" width="50%" /></a></div>
+		<h1>Aggiorna film:</h1>
+		<div th:if="${movie}">
+			<div>
+				<h2>
+					<span th:text="${movie.title}" class="film-title">Up!</span>
+					<span th:text="'(' + ${movie.year} + ')'">2000</span>
+				</h2>
+			</div>
+			<div th:if="${movie.director}">
+				<span><b>Regista: </b></span>
+				<span th:text="${movie.director.name} + ' ' + ${movie.director.surname}">StevenSpielberg</span>
+				<div>
+					<a th:href="@{'/admin/addDirector/' + ${movie.id}}">
+						<button type="button" class="button">Modifica regista</button>
+					</a>
+				</div>
+			</div>
+			<div th:unless="${movie.director}">
+				<a th:href="@{'/admin/addDirector/' + ${movie.id}}" class="button">Aggiungi regista</a>
+			</div>
+
+			<div>
+				<div th:if="${not movie.actors.isEmpty()}">
+					<b>Attori:</b>
+				</div>
+				<div th:each="actor: ${movie.actors}">
+					<span th:text="${actor.name} + ' ' + ${actor.surname}">Al Pacino</span>
+				</div>
+				<a th:href="@{'/admin/updateActors/' + ${movie.id}}">
+					<button type="button" class="button">Modifica attori</button>
+				</a>
+			</div>
+		</div>
+		<div th:unless="${movie}">Film non esistente</div>
+	</main>
+	
+</body>
+
+</html>

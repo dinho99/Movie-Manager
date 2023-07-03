@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Login
+	</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	<header>
+		<nav>
+			<ul class="navbar">
+				<li><a href="/">Home</a></li>
+			  	<li><a href="/movie">Elenco Film</a></li>
+			  	<li><a href="/artist">Elenco Artisti</a></li>
+				<li class="spacer"></li>
+			  	<li class="user-section">
+					<span th:if="${userDetails}">
+						<div class="username" th:text="${userDetails.username}"></div>
+					</span>
+					<span th:unless="${userDetails}">
+						<a href="/login" class="button">Login</a>
+					</span>
+					<span th:if="${userDetails}">
+						<a href="/logout" class="button">Logout</a>
+					</span>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<div>
+			<a href="/"><img src="/images/logo-siw.png" width="50%"/></a>
+		</div>
+		<div class="login-form">
+			<h1>Login</h1>
+			<form th:action="@{/login}" method="POST">
+				<div>
+					<span><input name="username" type="text" placeholder="Username" required /></span>
+					<span><input name="password" type="password" placeholder="Password" required /></span>
+				</div>
+				<div>
+					<span th:if="${param.error != null}">Username o password errati</span>
+				</div>
+				<div>
+					<span><button type="submit" class="button">Login</button></span>
+					<a th:href="@{/register}" class="button" th:text="Registrati">Registrati</a>
+				</div>
+			</form>
+		</div>
+
+	</main>
+</body>
+
+</html>

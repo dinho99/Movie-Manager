@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Film</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	<header>
+		<nav>
+			<ul class="navbar">
+				<li><a href="/">Home</a></li>
+			  	<li><a href="/movie">Elenco Film</a></li>
+			  	<li><a href="/artist">Elenco Artisti</a></li>
+				<li class="spacer"></li>
+			  	<li class="user-section">
+					<span th:if="${userDetails}">
+						<div class="username" th:text="${userDetails.username}"></div>
+					</span>
+					<span th:unless="${userDetails}">
+						<a href="/login" class="button">Login</a>
+					</span>
+					<span th:if="${userDetails}">
+						<a href="/logout" class="button">Logout</a>
+					</span>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
+		<h1>Dettagli Film:</h1>
+		<div th:if="${movie}">
+			<h2 th:text="${movie.title} + '(' + ${movie.year} + ')'">Up!</h2>
+			<div th:if="${movie.director}">
+				<div><b>Regista: </b></div>
+				<span th:text="${movie.director.name} + ' ' + ${movie.director.surname}">Steven Spielberg</span>
+			</div>
+			<div th:unless="${movie.director}"></div>
+			<div>
+				<div th:if="${not movie.actors.isEmpty()}">
+					<span><b>Attori:</b></span>
+				</div>
+				<div th:each="actor: ${movie.actors}">
+					<span th:text="${actor.name} + ' ' + ${actor.surname}">Al Pacino</span>
+				</div>
+			</div>
+			<div></div>
+			<div th:unless="${movie}">Film non esistente</div>
+			<div><img th:src="${movie.urlImage}" width="20%" /></div>
+		</div>
+		<a th:href="@{'/movie/' + ${movie.id} + '/formNewReview'}" class="button">Inserisci una recensione</a>
+		<a th:href="@{'/movie/' + ${movie.id} + '/reviews'}" class="button">Leggi le recensioni</a>
+		<div th:unless="${movie}">Non esiste</div>
+	</main>
+  </body>
+</html>

@@ -1,0 +1,293 @@
+/* Stile generale */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+  
+  /* Intestazione */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+  
+/* Navbar */
+.navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+  
+.navbar li {
+  margin-right: 10px;
+}
+  
+.navbar li a {
+  display: block;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+}
+  
+.navbar li a:hover {
+  background-color: #555;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.username {
+  font-weight: bold;
+  margin-right: 10px;
+  order: -1;
+}
+  
+.user-section {
+  display: flex;
+  align-items: center;
+}
+  
+.user-section .button {
+  margin-left: 10px;
+}
+
+/* Contenuto principale */
+main {
+  padding: 20px;
+  text-align: center;
+}
+  
+h1, h2 {
+  margin-bottom: 20px;
+}
+  
+/* Pulsanti */
+.button {
+  display: inline-block;
+  background-color: #52bf7a;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+}
+  
+.button:hover {
+  background-color: #45a049;
+}
+  
+/* Pulsante Login */
+.login {
+  float: right;
+}
+
+/* Form di login */
+.login-form {
+  max-width: 300px;
+  margin: 0 auto;
+}
+  
+.login-form h2 {
+  margin-bottom: 10px;
+}
+  
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+  
+.login-form button[type="submit"] {
+  width: 100%;
+}
+
+/* Lista dei film */
+.film-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.film-list li {
+  margin: 10px;
+}
+
+.film-card {
+  background-color: #d1f3d0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.film-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 180px; /* Imposta la larghezza desiderata per ciascun film */
+  margin: 10px;
+}
+
+.film-item img {
+  width: 100%; /* Imposta la dimensione dell'immagine al 100% della larghezza del suo contenitore */
+}
+
+.film-title {
+  text-align: left;
+  margin-right: 10px;
+}
+
+.film-actions {
+  text-align: right;
+  margin-left: 10px;
+}
+
+/*Lista degli artisti*/
+.artist-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.artist-list li {
+  margin: 10px;
+}
+
+.artist-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 180px; /* Imposta la larghezza desiderata per ciascun film */
+  margin: 10px;
+}
+
+.artist-item img {
+  width: 100%; /* Imposta la dimensione dell'immagine al 100% della larghezza del suo contenitore */
+}
+
+/* Lista delle recensioni */
+.review-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.review-list li {
+  background-color: #94fcba;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 200px; /* Imposta la larghezza desiderata per ciascuna recensione */
+  margin-right: 10px; /* Aggiunge uno spazio tra le recensioni */
+  margin-bottom: 10px;
+}
+
+.review-rating {
+  font-weight: bold;
+}
+
+.review-title {
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.review-text {
+  margin-top: 5px;
+}
+
+/* Stile per nuovo film */
+.newMovie-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.newMovie-form h1 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.newMovie-form input[type="text"],
+.newMovie-form input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.newMovie-form label {
+  margin-bottom: 5px;
+  display: block;
+}
+
+.newMovie-form .button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.newMovie-form .error-message {
+  color: red;
+  font-size: 12px;
+}
+
+/* Stile per nuovo artista */
+.artist-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.artist-form h1 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.artist-form input[type="text"],
+.artist-form input[type="date"],
+.artist-form input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.artist-form label {
+  margin-bottom: 5px;
+  display: block;
+}
+
+.artist-form .button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

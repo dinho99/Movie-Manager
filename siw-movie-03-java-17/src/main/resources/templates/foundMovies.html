@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Film</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	<header>
+		<ul class="navbar">
+			<li><a href="/">Home</a></li>
+			  <li><a href="/movie">Elenco Film</a></li>
+			  <li><a href="/artist">Elenco Artisti</a></li>
+			<li class="spacer"></li>
+			  <li class="user-section">
+				<span th:if="${userDetails}">
+					<div class="username" th:text="${userDetails.username}"></div>
+				</span>
+				<span th:unless="${userDetails}">
+					<a href="/login" class="button">Login</a>
+				</span>
+				<span th:if="${userDetails}">
+					<a href="/logout" class="button">Logout</a>
+				</span>
+			</li>
+		</ul>
+	</header>
+
+	<main>
+		<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
+		<h1>Film che soddisfano i requisiti:</h1>
+		<div th:if="${movies.isEmpty()}">Non ci sono film che soddisfano i requisiti</div>
+		<ul th:if="${!movies.isEmpty()}" class="film-list">
+			<li th:each="movie : ${movies}">
+				<a href="movie.html" th:href="@{'/movie' + '/' + ${movie.id}}"
+					th:text="${movie.title} + ' (' + ${movie.year}+')'" class="button">Up! (2000)</a>
+			</li>
+		</ul>
+	</main>
+</body>
+
+</html>

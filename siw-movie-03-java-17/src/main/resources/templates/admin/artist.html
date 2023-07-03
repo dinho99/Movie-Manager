@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Artista</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	<header>
+		<nav>
+			<ul class="navbar">
+				<li><a href="/">Home</a></li>
+			  	<li><a href="/movie">Elenco Film</a></li>
+			  	<li><a href="/artist">Elenco Artisti</a></li>
+				<li class="spacer"></li>
+			  	<li class="user-section">
+					<span th:if="${userDetails}">
+						<div class="username" th:text="${userDetails.username}"></div>
+					</span>
+					<span th:unless="${userDetails}">
+						<a href="/login" class="button">Login</a>
+					</span>
+					<span th:if="${userDetails}">
+						<a href="/logout" class="button">Logout</a>
+					</span>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
+    <h1>Dettagli Artista</h1>
+    <div th:if="${artist}">
+        <span th:text="${artist.name} + ' ' + ${artist.surname}">Dino Risi</span>
+        <span th:text="'| (' + ${artist.dateOfBirth} + ')'">20/20/2000</span>
+		<span th:if="${artist.dateOfDeath != null}" th:text="' - (' + ${artist.dateOfDeath} + ')'">20/20/2000</span>
+        <div><img width="15%" th:src=${artist.urlOfPicture} /></div>
+    </div>
+    <div th:unless="${artist}">Non esiste</div>
+	<a th:href="@{'/admin/deleteArtist/' + ${artist.id}}" class="button">Elimina l'artista dall'archivio</a>
+	</main>
+  </body>
+</html>
